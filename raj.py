@@ -31,5 +31,11 @@ def generate_video_with_audio(image_path, audio_path):
     outputvideo_path = 'output_video.mp4'
     video.write_videofile(outputvideo_path, codec='libx264', fps=24)
     st.video(outputvideo_path)
+    video_clip = VideoFileClip(outputvideo_path)
+    audio_clip = AudioFileClip(audio_path)
+    video_clip = video_clip.set_audio(audio_clip)
+    outputvideoaudio_path = 'output_video_with_audio.mp4'
+    video_clip.write_videofile(outputvideoaudio_path, codec='libx264', audio_codec='aac')
+    st.video(outputvideoaudio_path)
 
 generate_video_with_audio('img1.png','output.wav')
