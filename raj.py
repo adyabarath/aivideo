@@ -17,7 +17,7 @@ import re
 import subprocess
 
 imagemagick_binary = os.getenv("IMAGEMAGICK_BINARY", r"/usr/bin/convert")
-change_settings({"IMAGEMAGICK_BINARY": imagemagick_binary})
+print("ImageMagick Binary Path:", imagemagick_binary)
 
 
 # change_settings({"IMAGEMAGICK_BINARY": "/usr/bin/convert"})
