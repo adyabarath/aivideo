@@ -16,8 +16,11 @@ import numpy as np
 import re
 import subprocess
 
-imagemagick_binary = os.getenv("IMAGEMAGICK_BINARY", "C:\Program Files\ImageMagick-7.1.1-Q16-HDRI\convert.exe")
-change_settings({"IMAGEMAGICK_BINARY": imagemagick_binary})
+# imagemagick_binary = os.getenv("IMAGEMAGICK_BINARY", "C:\Program Files\ImageMagick-7.1.1-Q16-HDRI\convert.exe")
+# change_settings({"IMAGEMAGICK_BINARY": imagemagick_binary})
+
+
+change_settings({"IMAGEMAGICK_BINARY": "/usr/bin/convert"})
 
 
 change_settings({"IMAGEMAGICK_BINARY": r"C:\\Program Files\\ImageMagick-7.1.1-Q16\\magick.exe"})
