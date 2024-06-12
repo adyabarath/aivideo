@@ -16,6 +16,23 @@ import numpy as np
 import re
 import subprocess
 
+def time_to_seconds(time_obj):
+    return time_obj.hours * 3600 + time_obj.minutes * 60 + time_obj.seconds + time_obj.milliseconds / 1000
+
+def create_subtitle_clips(subtitles, videosize, fontsize=30, font='Arial', color='white', debug=False):
+    subtitle_clips = []
+    for subtitle in subtitles:
+        start_time = time_to_seconds(subtitle.start)
+        end_time = time_to_seconds(subtitle.end)
+        duration = end_time - start_time
+        video_width, video_height = videosize
+        text_clip = TextClip(subtitle.text, fontsize=fontsize, font=font, color=color, bg_color='black', size=(video_width * 0.5, None), method='caption').set_start(start_time).set_duration(duration)
+        subtitle_x_position = 'center'
+        subtitle_y_position = video_height * 9 / 10
+        text_position = (subtitle_x_position, subtitle_y_position)
+        subtitle_clips.append(text_clip.set_position(text_position))
+    return subtitle_clips
+
 def generate_video_with_audio(image_path, audio_path):
     aai.settings.api_key = "e1313b421dec4789bddac187ad824975"
     transcript = aai.Transcriber().transcribe(audio_path)
@@ -39,14 +56,12 @@ def generate_video_with_audio(image_path, audio_path):
     outputvideoaudio_path = 'output_video_with_audio.mp4'
     video_clip.write_videofile(outputvideoaudio_path, codec='libx264', audio_codec='aac')
     st.video(outputvideoaudio_path)
-    output_path = "final_video.mp4"
-    ffmpeg_command = [
-        'ffmpeg',
-        '-i', outputvideoaudio_path,
-        '-vf', f"subtitles={subtitle}:force_style='Fontname=Futura,PrimaryColour=&HFF00'",
-        output_path
-    ]
-    subprocess.run(ffmpeg_command, check=True)
-    st.video(output_path)
-
+    video = VideoFileClip(outputvideoaudio_path)
+    subtitles = pysrt.open(subtitle)
+    begin, end = outputvideoaudio_path.split(".mp4")
+    output_video_file = begin + "_subtitling.mp4"
+    subtitle_clips = create_subtitle_clips(subtitles, video.size)
+    final_video = CompositeVideoClip([video] + subtitle_clips)
+    final_video.write_videofile(output_video_file)
+    st.video(output_video_file)
 generate_video_with_audio('img1.png','output.wav')
