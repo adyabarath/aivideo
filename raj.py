@@ -16,7 +16,7 @@ import re
 from moviepy.config import change_settings
 
 # Specify the path to the ImageMagick binary
-change_settings({"IMAGEMAGICK_BINARY": r"C:\Program Files\ImageMagick-7.1.1-Q16-HDRI\convert.exe"})
+change_settings({"IMAGEMAGICK_BINARY": r"https://github.com/adyabarath/aivideo/blob/main/convert.exe"})
 def time_to_seconds(time_obj):
     return time_obj.hours * 3600 + time_obj.minutes * 60 + time_obj.seconds + time_obj.milliseconds / 1000
 
