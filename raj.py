@@ -13,10 +13,8 @@ from moviepy.editor import ImageClip, AudioFileClip, VideoFileClip, concatenate_
 from moviepy.video.tools.subtitles import SubtitlesClip
 import numpy as np
 import re
-from moviepy.config import change_settings
-
-# Specify the path to the ImageMagick binary
-change_settings({"IMAGEMAGICK_BINARY": r"https://github.com/adyabarath/aivideo/blob/main/convert.exe"})
+import os
+os.environ['PATH'] += os.pathsep + r'C:\Program Files\ImageMagick-7.1.1-Q16-HDRI'
 def time_to_seconds(time_obj):
     return time_obj.hours * 3600 + time_obj.minutes * 60 + time_obj.seconds + time_obj.milliseconds / 1000
 
