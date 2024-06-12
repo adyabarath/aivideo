@@ -14,6 +14,7 @@ from moviepy.editor import ImageClip, AudioFileClip, VideoFileClip, concatenate_
 from moviepy.video.tools.subtitles import SubtitlesClip
 import numpy as np
 import re
+import subprocess
 
 def generate_video_with_audio(image_path, audio_path):
     aai.settings.api_key = "e1313b421dec4789bddac187ad824975"
