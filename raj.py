@@ -16,9 +16,10 @@ import numpy as np
 import re
 import subprocess
 
-imagemagick_binary = os.getenv("IMAGEMAGICK_BINARY", "C:\Program Files\ImageMagick-7.1.1-Q16-HDRI\convert.exe")
-change_settings({"IMAGEMAGICK_BINARY": imagemagick_binary})
-
+# imagemagick_binary = os.getenv("IMAGEMAGICK_BINARY", "C:\Program Files\ImageMagick-7.1.1-Q16-HDRI\convert.exe")
+# change_settings({"IMAGEMAGICK_BINARY": imagemagick_binary})
+os.environ["MAGICK_HOME"] = "C:\\Program Files\\ImageMagick-7.1.1-Q16-HDRI"
+os.environ["PATH"] += os.pathsep + os.path.join(os.environ["MAGICK_HOME"], 'convert.exe')
 def time_to_seconds(time_obj):
     return time_obj.hours * 3600 + time_obj.minutes * 60 + time_obj.seconds + time_obj.milliseconds / 1000
 
