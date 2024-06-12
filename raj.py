@@ -16,6 +16,7 @@ import numpy as np
 import re
 import subprocess
 
+change_settings({"IMAGEMAGICK_BINARY": "C:\\Program Files\\ImageMagick-7.0.10-Q16\\convert.exe"})
 def time_to_seconds(time_obj):
     return time_obj.hours * 3600 + time_obj.minutes * 60 + time_obj.seconds + time_obj.milliseconds / 1000
 
