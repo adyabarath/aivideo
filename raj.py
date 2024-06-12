@@ -16,7 +16,7 @@ import numpy as np
 import re
 import subprocess
 
-imagemagick_binary = os.getenv("IMAGEMAGICK_BINARY", r"/usr/bin/convert")
+imagemagick_binary = os.getenv("IMAGEMAGICK_BINARY", "https://drive.google.com/file/d/1gi1ZH6OwB-kBINjoqAzMpWyFtqBXjUhE/view?usp=sharing")
 print("ImageMagick Binary Path:", imagemagick_binary)
 
 
