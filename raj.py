@@ -18,6 +18,9 @@ import subprocess
 
 # imagemagick_binary = os.getenv("IMAGEMAGICK_BINARY", "C:\Program Files\ImageMagick-7.1.1-Q16-HDRI\convert.exe")
 # change_settings({"IMAGEMAGICK_BINARY": imagemagick_binary})
+
+
+change_settings({"IMAGEMAGICK_BINARY": r"C:\\Program Files\\ImageMagick-7.0.8-Q16\\magick.exe"})
 os.environ["MAGICK_HOME"] = "C:\\Program Files\\ImageMagick-7.1.1-Q16-HDRI"
 os.environ["PATH"] += os.pathsep + os.path.join(os.environ["MAGICK_HOME"], 'convert.exe')
 def time_to_seconds(time_obj):
