@@ -9,12 +9,12 @@ import pysrt
 from gtts import gTTS
 import os
 from mutagen import File
+import ffmpeg
 from moviepy.editor import ImageClip, AudioFileClip, VideoFileClip, concatenate_videoclips, CompositeVideoClip
 from moviepy.video.tools.subtitles import SubtitlesClip
 import numpy as np
 import re
-import os
-os.environ['PATH'] += os.pathsep + r'C:\Program Files\ImageMagick-7.1.1-Q16-HDRI'
+
 def time_to_seconds(time_obj):
     return time_obj.hours * 3600 + time_obj.minutes * 60 + time_obj.seconds + time_obj.milliseconds / 1000
 
@@ -55,13 +55,14 @@ def generate_video_with_audio(image_path, audio_path):
     outputvideoaudio_path = 'output_video_with_audio.mp4'
     video_clip.write_videofile(outputvideoaudio_path, codec='libx264', audio_codec='aac')
     st.video(outputvideoaudio_path)
-    video = VideoFileClip(outputvideoaudio_path)
-    subtitles = pysrt.open(subtitle)
-    begin, end = outputvideoaudio_path.split(".mp4")
-    output_video_file = begin + "_subtitling.mp4"
-    subtitle_clips = create_subtitle_clips(subtitles, video.size)
-    final_video = CompositeVideoClip([video] + subtitle_clips)
-    final_video.write_videofile(output_video_file)
-    st.video(output_video_file)
+    output_path = "final_video.mp4"
+    ffmpeg_command = [
+        'ffmpeg',
+        '-i', outputvideoaudio_path,
+        '-vf', f"subtitles={subtitle}:force_style='Fontname=Futura,PrimaryColour=&HFF00'",
+        output_path
+    ]
+    subprocess.run(ffmpeg_command, check=True)
+    st.video(output_path)
 
 generate_video_with_audio('img1.png','output.wav')
