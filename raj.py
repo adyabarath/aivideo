@@ -20,7 +20,7 @@ import subprocess
 # change_settings({"IMAGEMAGICK_BINARY": imagemagick_binary})
 
 
-change_settings({"IMAGEMAGICK_BINARY": "/usr/bin/convert"})
+change_settings({"IMAGEMAGICK_BINARY": "/usr/bin/"})
 
 
 change_settings({"IMAGEMAGICK_BINARY": r"C:\\Program Files\\ImageMagick-7.1.1-Q16\\magick.exe"})
