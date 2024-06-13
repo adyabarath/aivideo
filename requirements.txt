@@ -11,5 +11,3 @@ comtypes==1.4.2
 gTTS==2.5.1
 mutagen==1.47.0
 ffmpeg-python==0.2.0
-imageio[ffmpeg]
-imageio-ffmpeg
